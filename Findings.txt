@@ -1,0 +1,196 @@
+Exploratory Data Analysis Findings:
+
+Breakdown of Type:
+- Water is the most common primary type amongst pokemon, followed by normal and grass. 
+- An overwhelmingly amount of pokemon have none as a second type, meanings having a sub type is a lot rarer.
+    - With that said, the most common type to be a sub type is flying
+
+- The most common pairing of pokemon types is Normal and Flying. 
+
+
+Stat Findings:
+- Based on a correlation heat map of all the stats here are the main things to note
+
+1. Defense and Speed have a correlation of 0.01, essentially nothing. This is shocking to me as I thought you would need higher 
+speed to be able to react and defend better, but I guess the pokemon world doesn't follow that logic
+2. The attack stat is the most correlated with BST (Base Stat total, an overall number of how strong a pokemon is), and speed is least correlated. 
+This means that the attack stat is the best indicator of a pokemon's BST, and speed is generally the least meaningful. 
+3. Special Defense and Special Attack have a correlation of 0.49. While not too strong of a correlation, its intersting to note as this could 
+mean pokemon that have a higher special defense has better chances of having a higher special attack. Maybe pokemon with better special stats have lower regular stats?
+
+
+I wanted to see if a pokemon't type was any sign of if they would have higher certain stats or not. To do this I created 6 boxplots 
+that showed the distribution for each stat by type 1. Additionally I wanted to statsistically test if the medians were different or not, so I 
+used Kruskal Wallis and Dunn's test to do so. Results were as follows:
+
+{'hp':    group_1   group_2   p_value
+ 11     Bug    Normal  0.000111
+ 1      Bug    Dragon  0.001590
+ 4      Bug  Fighting  0.015053
+ 16     Bug     Water  0.023245
+ 9      Bug    Ground  0.023813,
+ 'attack':       group_1   group_2       p_value
+ 83   Fighting   Psychic  8.353278e-09
+ 4         Bug  Fighting  9.737588e-08
+ 44     Dragon   Psychic  3.500364e-06
+ 86   Fighting     Water  9.442523e-06
+ 1         Bug    Dragon  3.846997e-05
+ 78   Fighting     Grass  5.264149e-05
+ 62      Fairy  Fighting  6.468577e-05
+ 81   Fighting    Normal  7.797215e-05
+ 128    Ground   Psychic  1.345691e-04
+ 77   Fighting     Ghost  1.624021e-04
+ 49   Electric  Fighting  3.311216e-04
+ 29       Dark   Psychic  8.322169e-04
+ 9         Bug    Ground  1.370901e-03
+ 47     Dragon     Water  2.233202e-03
+ 34     Dragon     Fairy  2.767451e-03
+ 148   Psychic     Steel  3.935065e-03
+ 147   Psychic      Rock  5.875484e-03
+ 38     Dragon     Ghost  7.273019e-03
+ 39     Dragon     Grass  7.322077e-03
+ 80   Fighting       Ice  7.441869e-03
+ 0         Bug      Dark  8.191426e-03
+ 42     Dragon    Normal  1.086952e-02
+ 82   Fighting    Poison  1.408349e-02
+ 94       Fire   Psychic  1.590978e-02
+ 33     Dragon  Electric  2.088732e-02
+ 15        Bug     Steel  3.228395e-02
+ 67      Fairy    Ground  3.499475e-02,
+ 'defense':       group_1 group_2       p_value
+ 141    Normal   Steel  1.829498e-13
+ 60   Electric   Steel  6.291516e-10
+ 140    Normal    Rock  8.869050e-10
+ 15        Bug   Steel  8.612040e-09
+ 96       Fire   Steel  1.444220e-08
+ 152     Steel   Water  6.287631e-08
+ 148   Psychic   Steel  6.292053e-08
+ 123     Grass   Steel  3.314888e-07
+ 59   Electric    Rock  2.959946e-06
+ 14        Bug    Rock  4.124930e-05
+ 95       Fire    Rock  6.010459e-05
+ 31       Dark   Steel  7.811909e-05
+ 145    Poison   Steel  9.578161e-05
+ 147   Psychic    Rock  2.201935e-04
+ 151      Rock   Water  3.164872e-04
+ 136       Ice   Steel  4.153876e-04
+ 85   Fighting   Steel  6.251526e-04
+ 115     Ghost   Steel  1.001256e-03
+ 126    Ground  Normal  1.121311e-03
+ 73      Fairy   Steel  1.130969e-03
+ 122     Grass    Rock  1.347390e-03
+ 46     Dragon   Steel  5.833664e-03
+ 54   Electric  Ground  3.474104e-02,
+ 'sp_attack':       group_1   group_2       p_value
+ 139    Normal   Psychic  1.385949e-10
+ 13        Bug   Psychic  7.663397e-10
+ 92       Fire    Normal  3.665868e-08
+ 128    Ground   Psychic  5.359147e-08
+ 5         Bug      Fire  1.349394e-07
+ 56   Electric    Normal  1.452621e-07
+ 83   Fighting   Psychic  1.614468e-07
+ 2         Bug  Electric  4.158378e-07
+ 90       Fire    Ground  3.332089e-06
+ 54   Electric    Ground  6.309096e-06
+ 75   Fighting      Fire  9.113245e-06
+ 49   Electric  Fighting  1.657389e-05
+ 147   Psychic      Rock  2.204279e-05
+ 119     Grass    Normal  2.074589e-04
+ 111     Ghost    Normal  2.681681e-04
+ 7         Bug     Ghost  3.107007e-04
+ 8         Bug     Grass  4.604632e-04
+ 109     Ghost    Ground  6.024940e-04
+ 95       Fire      Rock  1.055701e-03
+ 77   Fighting     Ghost  1.246522e-03
+ 142    Normal     Water  1.602132e-03
+ 59   Electric      Rock  1.754864e-03
+ 117     Grass    Ground  2.713757e-03
+ 16        Bug     Water  3.259914e-03
+ 78   Fighting     Grass  6.291154e-03
+ 131    Ground     Water  1.413750e-02
+ 143    Poison   Psychic  1.482851e-02
+ 1         Bug    Dragon  2.262227e-02
+ 42     Dragon    Normal  2.373530e-02
+ 40     Dragon    Ground  2.459805e-02
+ 86   Fighting     Water  3.137180e-02
+ 149   Psychic     Water  3.163571e-02
+ 35     Dragon  Fighting  4.538936e-02,
+ 'sp_defense':     group_1  group_2   p_value
+ 139  Normal  Psychic  0.001980
+ 13      Bug  Psychic  0.002596
+ 3       Bug    Fairy  0.008239
+ 69    Fairy   Normal  0.008815,
+ 'speed':      group_1   group_2   p_value
+ 59  Electric      Rock  0.000014
+ 53  Electric     Grass  0.000146
+ 2        Bug  Electric  0.000537
+ 45    Dragon      Rock  0.001542
+ 60  Electric     Steel  0.003103
+ 95      Fire      Rock  0.005494
+ 39    Dragon     Grass  0.016827
+ 30      Dark      Rock  0.020235
+ 1        Bug    Dragon  0.033317
+ 52  Electric     Ghost  0.042132
+ 46    Dragon     Steel  0.046090,
+ 'BST':     group_1 group_2   p_value
+ 1       Bug  Dragon  0.000238
+ 15      Bug   Steel  0.000790
+ 42   Dragon  Normal  0.005049
+ 0       Bug    Dark  0.011903
+ 5       Bug    Fire  0.012443
+ 141  Normal   Steel  0.014205}
+
+
+ - I think the most notable is in special attack. There is the most different groups with the most different as psychic and electric. Based on the 
+ boxplots they seem to be the type with the highest special attack stats. 
+
+ - Another notable thing is fighting seems to have the highest fighting stat by far, but also one of the lowest special attacks. This means they built
+ fighting types around actually throwing hands and not using any cool attacks.
+
+ - Finally it seems bug seems to have the worst overall BST out of all types, which seems pretty self explanatory
+
+ PREDICTING TYPES BASED ON BASE STATS:
+
+ I wanted to see if base stats were any indicator of what type the pokemon would be. I knew this was a classification problem right off the bat
+ so my brain immediately went to logistic regression. I realized that this was not a binary classification so logistic regression would struggle.
+ I knew I could use other techniques to make log regression work, but I decided to do a decision tree instead.
+
+Best Hyperparameters: {'class_weight': None, 'criterion': 'entropy', 'max_depth': 5, 'min_samples_leaf': 4, 'min_samples_split': 2}
+ Training accuracy:  0.28
+ Test accuracy: 0.19
+
+Based on these results I knew the model was struggling, so I went to XGBoost to see if it could work any better.
+
+My first XGBoost model presented results that screamed overfitting. So I decided to make trees less complex, add more n_estimators, and include early stopping round.
+Once this was done my model had:
+
+Train accuracy: 0.22
+Test accuracy: 0.23
+
+After this outcome I concluded that base stats alone were not good predictors of what type a pokemon is. After pondering more about this, its probably a good thing as 
+players would favor the type that has the highest stats.said
+
+
+
+CLUSTERING POKEMON INTO DIFFERENT CLASSES
+
+Another part of my project was to cluster the pokemon into different classes (tank, support, etc.). To do this I used Kmeans clustering and PCA 
+to cluster the pokemon. After looking at the means of each stat for each cluster I decided to label them. To see how accurate it was I then analyzed each group.
+
+- I found that the "Underpowered" class was genreally all of the stage 1 pokemon (Charmander, bulbasaur, pidgey, etc.) They generally had the lowest medians across all 
+stats. 
+- I found that the "fast sweeper" class, which had the highest median for the speed stat by far, were mainly the stage 2 medium pokemon, or pokemon cinstistng of 
+normal, electric, etc. types that have lower hp stats.  
+- The "Balanced class" was similar to the fast sweeper class but were pokemon that were generally slower and had higher other stats 
+- Finally the tank class was mostly 3rd evolution or bigger pokemon in general. Pokemon like charizard and baxcalibur, pokemon who look like tanks.
+
+
+
+BATTLE SIMULATION PREDCITION
+
+With the help of AI I was able to make a rough sketch of a battle simulation using mainly base stats. While this 
+won't give a super accurate picture of who will win, I think it still gives a good assumption. Using base stats and a type effectiveness
+multiplier I was able to build a much simpler version of the damage equation that pokemon actually uses.
+
+This is a very rough draft and something I am hoping to potentially come back to in the future if I can find more data on attacks and such.
+
