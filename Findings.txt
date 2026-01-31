@@ -149,6 +149,31 @@ used Kruskal Wallis and Dunn's test to do so. Results were as follows:
 
  - Finally it seems bug seems to have the worst overall BST out of all types, which seems pretty self explanatory
 
+ STATS BY GENERATION
+
+ - Last thing I did with EDA was compare if base stats were different amongst generations. The results were the following:
+
+ {'hp':    group_1 group_2   p_value
+ 6    Gen 1   Gen 8  0.000137
+ 17   Gen 3   Gen 8  0.006887
+ 2    Gen 1   Gen 4  0.025937,
+ 'attack':    group_1 group_2   p_value
+ 12   Gen 2   Gen 8  0.004686
+ 11   Gen 2   Gen 7  0.021335,
+ 'speed':    group_1 group_2   p_value
+ 17   Gen 3   Gen 8  0.020004,
+ 'BST':    group_1 group_2   p_value
+ 17   Gen 3   Gen 8  0.000265
+ 6    Gen 1   Gen 8  0.002165
+ 12   Gen 2   Gen 8  0.014840
+ 16   Gen 3   Gen 7  0.019621
+ 13   Gen 3   Gen 4  0.022845}
+
+
+ - From these results it appears gen 8 is the most frequently different that other groups. After looking back at my box plots it seems that 
+ generation 8 tends to have a slightly higher median that other groups, indicating more powerful pokemon. After going through some of the pokemon
+ in that generation I would agree, at least when it comes to the trading card game.
+
  PREDICTING TYPES BASED ON BASE STATS:
 
  I wanted to see if base stats were any indicator of what type the pokemon would be. I knew this was a classification problem right off the bat
